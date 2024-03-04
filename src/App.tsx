@@ -4,6 +4,7 @@ import Home from "./pages/home/Home";
 import Products from "./pages/products/Products";
 import AddProduct from "./pages/add-product/AddProduct";
 import EditProduct from "./pages/edit-product/EditProduct";
+import DeleteProduct from "./pages/delete-product/DeleteProduct";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
             <Route index element={<Products />} />
             <Route path="add" element={<AddProduct />} />
             <Route path="edit/:id" element={<EditProduct />} />
+            <Route path="delete/:id" element={<DeleteProduct />} />
           </Route>
         </Routes>
       </div>

@@ -85,7 +85,11 @@ const Products: React.FC = () => {
                     >
                       <Edit />
                     </Button>
-                    <Button variant="contained" color="error">
+                    <Button
+                      variant="contained"
+                      color="error"
+                      onClick={() => navigateToDeletePage(product.id)}
+                    >
                       <Delete />
                     </Button>
                   </td>
