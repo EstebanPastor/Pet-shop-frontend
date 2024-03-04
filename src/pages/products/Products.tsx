@@ -44,7 +44,13 @@ const Products: React.FC = () => {
     fetchProductsList();
   }, []);
 
-  console.log(products);
+  const navigateToEditPage = (id: string) => {
+    navigate(`/products/edit/${id}`);
+  };
+
+  const navigateToDeletePage = (id: string) => {
+    navigate(`/products/delete/${id}`);
+  };
 
   return (
     <div className="products">
@@ -71,7 +77,12 @@ const Products: React.FC = () => {
                   <td>{moment(product.createdAt).fromNow()}</td>
                   <td>{moment(product.updatedAt).fromNow()}</td>
                   <td>
-                    <Button variant="contained" color="warning" sx={{ mx: 3 }}>
+                    <Button
+                      variant="contained"
+                      color="warning"
+                      sx={{ mx: 3 }}
+                      onClick={() => navigateToEditPage(product.id)}
+                    >
                       <Edit />
                     </Button>
                     <Button variant="contained" color="error">
