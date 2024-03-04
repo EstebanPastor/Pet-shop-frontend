@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 
+import { useNavigate, useLocation } from "react-router-dom";
+
 import "./products.scss";
 
 import { IProduct } from "../../types/global.types";
@@ -12,13 +14,27 @@ import { baseURL } from "../../constants/url.constant";
 import { Button } from "@mui/material";
 import { Edit, Delete } from "@mui/icons-material";
 
+import Swal from "sweetalert2";
+
 const Products: React.FC = () => {
   const [products, setProducts] = useState<IProduct[]>([]);
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  console.log(location);
 
   const fetchProductsList = async () => {
     try {
       const response = await axios.get<IProduct[]>(baseURL);
       setProducts(response.data);
+      if (location?.state) {
+        Swal.fire({
+          icon: "success",
+          title: location.state?.message,
+        });
+        navigate(location.pathname, { replace: true });
+      }
     } catch (error) {
       alert("Error while fetching products list");
     }

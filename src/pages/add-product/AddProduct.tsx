@@ -34,7 +34,11 @@ const AddProduct: React.FC = () => {
     };
     axios
       .post(baseURL, data)
-      .then((response) => navigate("/products"))
+      .then((response) =>
+        navigate("/products", {
+          state: { message: "Product added successfully" },
+        })
+      )
       .catch((error) => alert("Error while adding product"));
   };
 
